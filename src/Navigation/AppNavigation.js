@@ -19,7 +19,7 @@ const Navigations = props => {
         options={{
           headerShown: true,
           title: 'Chat bot',
-          headerStyle: {backgroundColor: 'white'},
+          headerStyle: {backgroundColor: 'white', borderBottomWidth: 1},
         }}
       />
     </stack.Navigator>
