@@ -19,28 +19,11 @@ const sample = [
     name: 'Boot',
     message: `Hello, please type 'Help' to start the conversation`,
   },
-  // {
-  //   name: 'Joker',
-  //   message: 'Hi, Boot. Can you here me ?',
-  // },
-  // {
-  //   name: 'Joker',
-  //   message: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
-  // },
-  // {
-  //   name: 'Joker',
-  //   message: '?',
-  // },
-  // {
-  //   name: 'Boot',
-  //   message: 'Ya',
-  // },
 ];
 const ChatPage = () => {
   const flatListRef = useRef(null);
   const [Input, setInput] = useState('');
   const [chats, setchats] = useState(sample);
-  const [keyItems, setkeyItems] = useState(['AGRONOMI', 'FINANCE']);
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
@@ -56,11 +39,30 @@ const ChatPage = () => {
       //logic here and or call api
       let bootData = datas.chat_data.data;
 
-      const foundDepart = bootData.find(
-        item =>
-          item['departement'].toLowerCase() ===
-          lastObject.message.toLowerCase(),
-      );
+      //SAMPEL STRUKTUR DATA
+      // const data = [
+      //   {
+      //     subject: 'AGRONOMI',
+      //     options: [
+      //       {
+      //         subject: 'BJR',
+      //         options: [{subject: 'Kenapa ?'}],
+      //       },
+      //       {
+      //         subject: 'JANJANG',
+      //         options: [],
+      //       },
+      //       {
+      //         subject: 'BRONDOLAN',
+      //         options: [],
+      //       },
+      //     ],
+      //   },
+      // ];
+      const foundDepart = bootData.find(item => {
+        item.subject.toLowerCase() === lastObject.message.toLowerCase();
+        return item;
+      });
 
       // Object item from "list chats" will be display in to list ui
       let newBootRespon = {};
@@ -70,14 +72,14 @@ const ChatPage = () => {
           name: 'Boot',
           message: 'hallo',
           chatType: 'array',
-          keyword: ['AGRONOMI', 'FINANCE'],
+          options: ['AGRONOMI', 'FINANCE'],
         };
       } else if (!Func.isObjEmpty(foundDepart)) {
         newBootRespon = {
           name: 'Boot',
           message: 'hallo',
           chatType: 'array',
-          keyword: foundDepart?.keyword,
+          options: foundDepart?.options,
         };
       } else {
         newBootRespon = {
@@ -143,16 +145,19 @@ const ChatPage = () => {
             <Text style={{color: '#FFF'}}>
               {`Hey, I'm Chatbot your personal helper...\n\nIf you need to get help, just type or press on one of this topic:`}
             </Text>
-            {item?.keyword.map((key, i) => {
+            {item?.options.map((key, i) => {
               return (
                 <TouchableOpacity
                   key={i}
-                  onPress={() => handleUserSelectKeyword(key, i)}
+                  onPress={() =>
+                    handleUserSelectKeyword(
+                      typeof key === 'object' ? key?.subject : key,
+                      i,
+                    )
+                  }
                   activeOpacity={0.7}
                   style={styles.options}>
-                  <Text style={styles.messageColor}>
-                    {key?.departement || key?.keywordName || key}
-                  </Text>
+                  <Text style={styles.messageColor}>{key?.subject || key}</Text>
                 </TouchableOpacity>
               );
             })}

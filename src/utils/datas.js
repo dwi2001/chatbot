@@ -5,32 +5,35 @@ const datas = {
     data: [
       {
         itemId: 1,
-        departement: 'AGRONOMI',
-        keyword: [
+        subject: 'AGRONOMI',
+        options: [
           {
-            keywordName: 'BJR',
-            keywordSub: [
-              'Kenapa bjr saya berubah setiap bulan?',
-              'Kenapa bjr saya tidak sesuai dengan bulan lalu?',
-              'Kenapa bjr tidak sesuai dengan catatan mandor?',
-              'Ada yang main bjr di afdeling?',
+            subject: 'BJR',
+            options: [
+              {subject: 'Kenapa bjr saya berubah setiap bulan?'},
+              {subject: 'Kenapa bjr saya tidak sesuai dengan bulan lalu?'},
+              {subject: 'Kenapa bjr tidak sesuai dengan catatan mandor?'},
+              {subject: 'Ada yang main bjr di afdeling?'},
             ],
           },
           {
-            keywordName: 'JANJANG',
-            keywordSub: [
-              'Kenapa catatan janjang saya beda di gajihan?',
-              'Ada permainan janjang Angin di afdeling',
-              'Ada janjang saya yang hilang dan tidak dibayar oleh perusahaan',
-              'Kenapa Janjang saya selisih dengan gajihan?',
+            subject: 'JANJANG',
+            options: [
+              {subject: 'Kenapa catatan janjang saya beda di gajihan?'},
+              {subject: 'Ada permainan janjang Angin di afdeling'},
+              {
+                subject:
+                  'Ada janjang saya yang hilang dan tidak dibayar oleh perusahaan',
+              },
+              {subject: 'Kenapa Janjang saya selisih dengan gajihan?'},
             ],
           },
           {
-            keywordName: 'BRONDOLAN',
-            keywordSub: [
-              'Kenapa brondolan saya tidak dibayar?',
-              'Ada permainan brondolan di afdeling',
-              'Brondolan saya dengan catatan mandor selisih',
+            subject: 'BRONDOLAN',
+            options: [
+              {subject: 'Kenapa brondolan saya tidak dibayar?'},
+              {subject: 'Ada permainan brondolan di afdeling'},
+              {subject: 'Brondolan saya dengan catatan mandor selisih'},
             ],
           },
         ],
@@ -38,23 +41,26 @@ const datas = {
       {
         itemId: 1,
         departement: 'FINANCE',
-        keyword: [
+        options: [
           {
-            keywordName: 'GAJI',
-            keywordSub: [
-              'Selisih Gaji',
-              'Gaji banyak potongan',
-              'Gantungan gaji tidak dibayar',
-              'Kontantan terlambat kasih uangnya',
-              'Ada yang nitip gaji dengan mandor atau karyawan yang lain',
+            subject: 'GAJI',
+            options: [
+              {subject: 'Selisih Gaji'},
+              {subject: 'Gaji banyak potongan'},
+              {subject: 'Gantungan gaji tidak dibayar'},
+              {subject: 'Kontantan terlambat kasih uangnya'},
+              {
+                subject:
+                  'Ada yang nitip gaji dengan mandor atau karyawan yang lain',
+              },
             ],
           },
           {
-            keywordName: 'PERHITUNGAN',
-            keywordSub: [
-              'Bagaimana perhitungan janjang',
-              'Kenapa Gaji saya tidak sesuai?',
-              'Kenapa Gaji saya tidak dibayar?',
+            subject: 'PERHITUNGAN',
+            options: [
+              {subject: 'Bagaimana perhitungan janjang'},
+              {subject: 'Kenapa Gaji saya tidak sesuai?'},
+              {subject: 'Kenapa Gaji saya tidak dibayar?'},
             ],
           },
         ],
