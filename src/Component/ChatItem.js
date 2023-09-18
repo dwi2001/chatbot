@@ -1,79 +1,54 @@
-import {Text, View, StyleSheet, useWindowDimensions} from 'react-native';
-import React, {useState} from 'react';
+import {Text, View, StyleSheet, Image} from 'react-native';
+import React from 'react';
 import {DotIndicator} from 'react-native-indicators';
+import {bootLogo} from '../assets/images';
 
 const ChatItem = ({
   containerStyle,
-  cardStyle,
   children,
   loading = false,
-  logo,
-  isUser,
+  avatarText,
+  avatarImg,
+  isCustomer,
 }) => {
-  const windowDimensions = useWindowDimensions();
-  const [widthDimension, setWidthDimension] = useState(windowDimensions.width);
-
-  const onLayout = event => {
-    const {width} = event.nativeEvent.layout;
-    setWidthDimension(width);
-  };
-
   const styled = {
-    itemMessage: [
-      styles.cardMessage,
-      cardStyle,
-      isUser ? styles.cardMessageUser : {},
+    containerStyle: [
+      containerStyle,
+      styles.cardContainer,
+      isCustomer ? styles.cardContainerCustomer : {},
     ],
-    iconuserBg: [
-      styles.user,
-      isUser
-        ? {
-            backgroundColor: 'grey',
-          }
-        : {
-            backgroundColor: 'black',
-          },
+    avatarContainer: [
+      styles.avatar,
+      isCustomer ? styles.bgAvatarCustomer : styles.bgAvatarBoot,
     ],
+    bodyContainer: [
+      styles.bodyContainer,
+      isCustomer ? styles.cardContainerCustomer : {},
+    ],
+    messageLayouts: [styles.messages, isCustomer ? styles.messageCustomer : {}],
   };
 
   return (
-    <View style={[styles.card, containerStyle]}>
-      <View
-        style={[
-          isUser
-            ? {
-                flexDirection: 'row-reverse',
-                marginVertical: 10,
-              }
-            : {
-                flexDirection: 'row',
-                marginVertical: 10,
-              },
-        ]}>
-        <View style={styled.iconuserBg}>
-          <Text style={styles.iconUser}>{logo}</Text>
-        </View>
-        <View
-          style={[
-            isUser
-              ? {
-                  flexDirection: 'row-reverse',
-                  maxWidth: '76%',
-                }
-              : {
-                  flexDirection: 'row',
-                  maxWidth: '76%',
-                },
-          ]}>
-          <View onLayout={onLayout} style={styled.itemMessage}>
-            {loading ? (
-              <View style={styles.dotLoading}>
-                <DotIndicator color={'#FFF'} count={3} size={6} />
-              </View>
-            ) : (
-              children
-            )}
-          </View>
+    <View style={styled.containerStyle}>
+      <View style={styled.avatarContainer}>
+        {isCustomer ? (
+          <Text style={styles.avatarText}>{avatarText}</Text>
+        ) : (
+          <Image
+            style={styles.avatarImg}
+            source={avatarImg ? avatarImg : bootLogo}
+          />
+        )}
+      </View>
+      <View style={styled.bodyContainer}>
+        <View style={styled.messageLayouts}>
+          {loading ? (
+            <View style={styles.dotLoading}>
+              <DotIndicator color={'#FFF'} count={3} size={6} />
+            </View>
+          ) : (
+            children
+          )}
         </View>
       </View>
     </View>
@@ -81,37 +56,59 @@ const ChatItem = ({
 };
 
 const styles = StyleSheet.create({
-  card: {
-    justifyContent: 'center',
-    marginVertical: 5,
+  cardContainer: {
+    marginVertical: 10,
+    flexDirection: 'row',
   },
-  cardMessage: {
-    backgroundColor: '#ed7d31',
-    padding: 10,
-    borderRadius: 20,
-    minWidth: '20%',
-    borderTopLeftRadius: 0,
+  cardContainerCustomer: {
+    flexDirection: 'row-reverse',
   },
-  cardMessageUser: {
-    backgroundColor: '#4473c5',
-    alignSelf: 'flex-end',
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 20,
+  bgAvatarBoot: {
+    backgroundColor: 'black',
   },
-  user: {
+  bgAvatarCustomer: {
+    backgroundColor: 'grey',
+  },
+  avatar: {
     marginHorizontal: 15,
-    backgroundColor: 'red',
     width: 45,
     height: 45,
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  avatarImg: {
+    marginTop: 10,
+    height: '100%',
+    width: '100%',
+  },
+  avatarText: {
+    color: '#FFF',
+  },
+
+  bodyContainer: {
+    maxWidth: '76%',
+    flexDirection: 'row',
+  },
+
+  messages: {
+    backgroundColor: '#ed7d31',
+    padding: 10,
+    borderRadius: 20,
+    minWidth: '20%',
+    borderTopLeftRadius: 0,
+    alignItems: 'center',
+  },
+  messageCustomer: {
+    backgroundColor: '#4473c5',
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 20,
+  },
+
   dotLoading: {
     height: 15,
     width: 15,
-    alignItems: 'center',
-    alignSelf: 'center',
+    paddingTop: 5,
   },
 });
 

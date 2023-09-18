@@ -4,26 +4,29 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
-import {iconSend} from '../assets/images';
+import {paperPlan} from '../assets/images';
 
-export default function InputSend({onSend, ...props}) {
+export default function InputSend({onSend, loading = false, ...props}) {
   return (
-    <View>
-      <View style={styles.contentFooter}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Write your message here"
-          placeholderTextColor={'grey'}
-          {...props}
-        />
-        <TouchableOpacity onPress={onSend} activeOpacity={0.9}>
-          <View style={styles.containerIconSend}>
-            <Image style={styles.iconSend} source={iconSend} />
-          </View>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.contentFooter}>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Write your message here"
+        placeholderTextColor={'grey'}
+        {...props}
+      />
+      <TouchableOpacity disabled={loading} onPress={onSend} activeOpacity={0.7}>
+        <View style={styles.containerIconSend}>
+          {loading ? (
+            <ActivityIndicator size={25} color="#FFF" />
+          ) : (
+            <Image style={styles.iconSend} source={paperPlan} />
+          )}
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -43,10 +46,12 @@ const styles = StyleSheet.create({
   containerIconSend: {
     backgroundColor: '#2c8aaa',
     width: 70,
+    height: 55,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   iconSend: {
-    height: 55,
-    width: 55,
+    height: 35,
+    width: 35,
   },
 });

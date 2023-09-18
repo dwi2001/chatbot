@@ -60,52 +60,6 @@ const datas = {
         ],
       },
     ],
-    // data: [
-    //   {
-    //     item_id: 1,
-    //     question: 'Hello hope you are having a good day \uD83D\uDE00',
-    //     type: 'TEXT',
-    //     answers: [],
-    //   },
-    //   {
-    //     item_id: 2,
-    //     question: 'hey there! How can I help you?',
-    //     type: 'LIST',
-    //     answers: [
-    //       {
-    //         id: 1,
-    //         name: 'App related Issues',
-    //         payload: 'App related Issues',
-    //         type: 'LIST',
-    //       },
-    //       {
-    //         id: 2,
-    //         name: 'Hardware related Issues',
-    //         payload: 'Hardware related Issues',
-    //         type: 'LIST',
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     item_id: 3,
-    //     question: 'What is the issue you are facing from below issues',
-    //     type: 'LIST',
-    //     answers: [
-    //       {
-    //         id: 1,
-    //         name: 'Login issue',
-    //         payload: 'Login issue',
-    //         type: 'LIST',
-    //       },
-    //       {
-    //         id: 3,
-    //         name: 'System issue',
-    //         payload: 'System issue',
-    //         type: 'LIST',
-    //       },
-    //     ],
-    //   },
-    // ],
   },
 };
 
