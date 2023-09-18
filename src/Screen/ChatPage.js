@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import InputSend from '../Component/InputSend';
 import ChatItem from '../Component/ChatItem';
-import AppBar from '../Component/AppBar';
 const sample = [
   {
     name: 'Boot',
@@ -41,45 +40,48 @@ const ChatPage = () => {
   const handleSendMessage = () => {};
   const handleKeywordSelect = (itm, i) => {};
 
+  const renderItem = ({item, index}) => {
+    return (
+      <ChatItem
+        key={index}
+        containerStyle={{}}
+        loading={false}
+        avatarText={item.name.substring(0, 1)}
+        avatarImg={''}
+        isCustomer={item.name !== 'Boot'}>
+        <Text style={{color: '#FFF'}}>{item.message}</Text>
+        {index === 4 && (
+          <View>
+            <Text style={{color: '#FFF'}}>
+              {`Hey, I'm Chatbot your personal helper...\n\nIf you need to get help, just type or press on one of this topic:`}
+            </Text>
+            {keyItems.map((itm, i) => {
+              return (
+                <TouchableOpacity
+                  key={i}
+                  onPress={() => handleKeywordSelect(itm, i)}
+                  activeOpacity={0.7}
+                  style={styles.options}>
+                  <Text style={{color: '#FFF'}}>{itm}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        )}
+      </ChatItem>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* <AppBar title={'Chat Bot'} /> */}
       <FlatList
         ref={flatListRef}
         showsVerticalScrollIndicator={false}
         data={chats}
+        renderItem={renderItem}
         onContentSizeChange={() =>
           flatListRef.current?.scrollToEnd({animated: true})
         }
-        renderItem={({item, index}) => {
-          return (
-            <ChatItem
-              key={index}
-              loading={false}
-              logo={item.name.substring(0, 1)}
-              isUser={item.name !== 'Boot'}>
-              <Text style={{color: '#FFF'}}>{item.message}</Text>
-              {index === 4 && (
-                <View>
-                  <Text style={{color: '#FFF'}}>
-                    {`Hey, I'm Chatbot your personal helper...\n\nIf you need to get help, just type or press on one of this topic:`}
-                  </Text>
-                  {keyItems.map((itm, i) => {
-                    return (
-                      <TouchableOpacity
-                        key={i}
-                        onPress={() => handleKeywordSelect(itm, i)}
-                        activeOpacity={0.7}
-                        style={styles.options}>
-                        <Text style={{color: '#FFF'}}>{itm}</Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              )}
-            </ChatItem>
-          );
-        }}
       />
       <InputSend
         onChangeText={val => setInput(val)}
