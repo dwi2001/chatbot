@@ -1,7 +1,7 @@
 import {Text, View, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import {DotIndicator} from 'react-native-indicators';
-import {bootLogo} from '../assets/images';
+// import {bootLogo} from '../assets/images';
 
 const ChatItem = ({
   containerStyle,
@@ -36,7 +36,7 @@ const ChatItem = ({
         ) : (
           <Image
             style={styles.avatarImg}
-            source={avatarImg ? avatarImg : bootLogo}
+            source={avatarImg ? avatarImg : null}
           />
         )}
       </View>

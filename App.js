@@ -22,6 +22,7 @@ import {
 // import AppContainer from './src/navigator/AppNavigator';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import Navigations from './src/Navigation/AppNavigation';
+import MainNavigator from './src/Navigation/MainNavigation';
 
 // import store from './src/state/Store';
 // import { Provider } from 'react-redux';
@@ -44,6 +45,7 @@ const App: () => Node = () => {
       {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
       {/* <AppContainer /> */}
       <Navigations />
+      {/* <MainNavigator /> */}
     </NavigationContainer>
     // </Provider>
   );

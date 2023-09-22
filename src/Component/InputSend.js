@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React from 'react';
-import {paperPlan} from '../assets/images';
+// import {paperPlan} from '../assets/images';
 
 export default function InputSend({onSend, loading = false, ...props}) {
   return (
@@ -22,9 +22,8 @@ export default function InputSend({onSend, loading = false, ...props}) {
         <View style={styles.containerIconSend}>
           {loading ? (
             <ActivityIndicator size={25} color="#FFF" />
-          ) : (
-            <Image style={styles.iconSend} source={paperPlan} />
-          )}
+          ) : // <Image style={styles.iconSend} source={paperPlan} />
+          null}
         </View>
       </TouchableOpacity>
     </View>
